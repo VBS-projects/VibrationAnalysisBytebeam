@@ -181,6 +181,14 @@ bool publishToDeviceShadow(Adafruit_MPU6050 *mpu6050)
   JsonArray deviceShadowJsonArray = doc.to<JsonArray>();
   JsonObject deviceShadowJsonObj_1 = deviceShadowJsonArray.createNestedObject();
   DEBUG_PRINTLN(milliseconds);
+  
+  double accelerationX = a.acceleration.x / 16384.0;
+  double accelerationY = a.acceleration.y / 16384.0;
+  double accelerationZ = a.acceleration.z / 16384.0;
+
+  double accelerationMagnitude = sqrt(pow(accelerationX, 2) + pow(accelerationY, 2) + pow(accelerationZ, 2));
+  float frequency_Hz = 200.0; // Desired frequency of vibration
+  double vibrationVelocity_mm_s = accelerationMagnitude * frequency_Hz * 9.81;
 
   deviceShadowJsonObj_1["timestamp"] = milliseconds;
   deviceShadowJsonObj_1["sequence"] = sequence;
@@ -188,7 +196,9 @@ bool publishToDeviceShadow(Adafruit_MPU6050 *mpu6050)
   deviceShadowJsonObj_1["accelx"] = a.acceleration.x;
   deviceShadowJsonObj_1["accely"] = a.acceleration.y;
   deviceShadowJsonObj_1["accelz"] = a.acceleration.z;
-
+  deviceShadowJsonObj_1["gValue"] = accelerationMagnitude;
+  deviceShadowJsonObj_1["vibValue"] = vibrationVelocity_mm_s;
+  
   serializeJson(deviceShadowJsonArray, deviceShadowStr);
   payload = deviceShadowStr.c_str();
   Serial.printf("publishing %s to %s\n", payload, deviceShadowStream);
