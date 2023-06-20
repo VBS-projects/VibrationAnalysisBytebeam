@@ -1,18 +1,13 @@
-# Smart Indoor Farm: Analyzing CO2, Temperature, Humidity and Automated lighting systems
+# Vibration analysis for rotating machines: Analyzing Accelerometer values to do vibration analysis
 
 ## Hardware used 
 * ESP32
-* SCD4x
-* SHT31 
-* 2 channel 5v SSD Relay
+* MPU6050
 
 ### Libraries used:
 
-#### library for SCD4x 
-1. Sparkfun_SCD4x https://github.com/sparkfun/SparkFun_SCD4x_Arduino_Library
-
-#### library for Sht3x
-1. Adafruit_SHT31 2.2.0 https://github.com/adafruit/Adafruit_SHT31
+#### library for MPU6050 
+1. Adafruit_MPU6050 https://github.com/adafruit/Adafruit_MPU6050
 
 #### library used for Json
 1. Arduino Json 5.5.0 Benoit Blenchon <https://github.com/bblanchon/ArduinoJson>
@@ -24,4 +19,3 @@
 1. ESPAsyncWebserver Me No Dev https://github.com/me-no-dev/ESPAsyncWebServer
 2. dependency for ESP8266 ESPAsyncTCP Me No Dev https://github.com/me-no-dev/ESPAsyncTCP
 3. dependency for ESP32 AsyncTCP Me No Dev https://github.com/me-no-dev/AsyncTCP
-"# VibrationAnalysisBytebeam" 
